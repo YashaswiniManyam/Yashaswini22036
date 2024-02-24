@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
-dataset = pd.read_excel("C:\\Users\\admin\\Desktop\\sem4\\training_mathbert 1.xlsx")
+dataset = pd.read_excel("C:\\Users\\YashaswiniManyam\\Machine Leaning\\Lab4\\training_mathbert 1.xlsx")
 
 feature_1 = 'embed_0'
 feature_2 = 'embed_1'

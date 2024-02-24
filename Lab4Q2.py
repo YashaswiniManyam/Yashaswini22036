@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-dataset = pd.read_excel("C:\\Users\\admin\\Desktop\\sem4\\training_mathbert 1.xlsx")
+dataset = pd.read_excel("C:\\Users\\YashaswiniManyam\\Machine Leaning\\Lab4\\training_mathbert 1.xlsx")
 
 feature = 'embed_0'
 
