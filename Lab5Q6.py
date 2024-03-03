@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the data
@@ -9,7 +10,7 @@ feature_2 = 'embed_1'
 class_feature = df["output"].values
 
 # Assign classes based on the payment amount
-df['Class'] = df[class_feature].apply(lambda x: 1 if x > 3 else 0)
+df['Class'] = np.where(class_feature > 3, 1, 0)
 
 # Define colors for each class
 colors = {0: 'blue', 1: 'red'}
