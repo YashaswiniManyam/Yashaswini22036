@@ -20,21 +20,18 @@ def perceptron(input_data, weights, activation_function):
     # Apply activation function
     return activation_function(weighted_sum)
 
-# AND gate truth table
+# XOR gate truth table
 X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-y = np.array([0, 0, 0, 1])
+y = np.array([0, 1, 1, 0])
 
 # Initial weights
-weights = np.array([10, 0.2, -0.75])
+weights = np.array([0.5, -0.5, 0.5])
 
 # Learning rate
-alpha = 0.05
+alpha = 0.1
 
 # Maximum number of epochs
 max_epochs = 1000
-
-# List to store errors for plotting
-errors = []
 
 # Activation functions to iterate over
 activation_functions = [bipolar_step_activation, sigmoid_activation, relu_activation]
@@ -44,7 +41,7 @@ convergence_epochs = []
 # Training with different activation functions
 for activation_function in activation_functions:
     # Reset weights for each activation function
-    weights = np.array([10, 0.2, -0.75])
+    weights = np.array([0.5, -0.5, 0.5])
     for epoch in range(max_epochs):
         error = 0
         for i in range(len(X)):
@@ -55,15 +52,19 @@ for activation_function in activation_functions:
             # Update weights
             weights += alpha * (y[i] - prediction) * np.insert(X[i], 0, 1)
         # Check for convergence
-        if error <= 0.002:
+        if error == 0:
             print(f"{activation_names[activation_functions.index(activation_function)]} converged after {epoch+1} epochs")
             convergence_epochs.append(epoch+1)
             break
-    errors.append(error)
+    if error != 0:
+        print(f"{activation_names[activation_functions.index(activation_function)]} did not converge after {max_epochs} epochs")
 
 # Plotting convergence epochs for each activation function
-plt.bar(activation_names, convergence_epochs)
-plt.xlabel('Activation Function')
-plt.ylabel('Convergence Epochs')
-plt.title('Convergence Epochs for Different Activation Functions')
-plt.show()
+if convergence_epochs:
+    plt.bar(activation_names, convergence_epochs)
+    plt.xlabel('Activation Function')
+    plt.ylabel('Convergence Epochs')
+    plt.title('Convergence Epochs for Different Activation Functions (XOR Gate)')
+    plt.show()
+else:
+    print("None of the activation functions led to convergence.")

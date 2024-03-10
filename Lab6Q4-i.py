@@ -14,15 +14,15 @@ def perceptron(input_data, weights):
     # Apply step activation function
     return step_activation(weighted_sum)
 
-# AND gate truth table
+# XOR gate truth table
 X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-y = np.array([0, 0, 0, 1])
+y = np.array([0, 1, 1, 0])
 
 # Initial weights
-weights = np.array([10, 0.2, -0.75])
+weights = np.array([0.5, -0.5, 0.5])
 
 # Learning rate
-alpha = 0.05
+alpha = 0.1
 
 # Maximum number of epochs
 max_epochs = 1000
@@ -43,7 +43,7 @@ for epoch in range(max_epochs):
     # Append error for plotting
     errors.append(error)
     # Check for convergence
-    if error <= 0.002:
+    if error == 0:
         print(f"Converged after {epoch+1} epochs")
         break
 
@@ -51,8 +51,9 @@ for epoch in range(max_epochs):
 plt.plot(range(1, epoch+2), errors)
 plt.xlabel('Epochs')
 plt.ylabel('Error')
-plt.title('Error vs Epochs')
+plt.title('Error vs Epochs for XOR Gate')
 plt.show()
 
 # Final weights
 print("Final weights:", weights)
+
